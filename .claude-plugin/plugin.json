@@ -1,0 +1,8 @@
+{
+  "name": "phinite",
+  "version": "0.4.3",
+  "description": "Build, ship, run and debug Phinite agent graphs from Claude through the hosted Phinite MCP server (OAuth sign-in), with the playbook's design rules as skills and a local project script.",
+  "author": { "name": "Phinite CIQ use-case team" },
+  "repository": "https://github.com/Auto-AI-Labs/phinite-claudecode-plugin",
+  "keywords": ["phinite", "agents", "agent-graphs", "mcp"]
+}

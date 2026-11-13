@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "phinite": {
+      "type": "http",
+      "url": "${PHINITE_MCP_URL:-https://mcp.dev.phinite.ai/mcp}"
+    }
+  }
+}

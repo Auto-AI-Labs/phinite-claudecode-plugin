@@ -1,0 +1,18 @@
+{
+  "name": "phinite",
+  "owner": {
+    "name": "Phinite CIQ use-case team"
+  },
+  "metadata": {
+    "description": "Phinite tools for Claude Code: build, ship, run and debug Phinite agent graphs.",
+    "version": "0.4.3"
+  },
+  "plugins": [
+    {
+      "name": "phinite",
+      "source": "./",
+      "description": "Build, ship, run and debug Phinite agent graphs from Claude.",
+      "version": "0.4.3"
+    }
+  ]
+}

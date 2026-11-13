@@ -1,0 +1,40 @@
+name: Offline tests
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, python: "3.12" }
+          - { os: windows-latest, python: "3.12" }   # catches encoding and path-separator bugs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Project script tests (no network)
+        run: python -m unittest tests/test_offline.py -v
+      - name: Manifests are valid JSON
+        run: python -c "import json; [json.load(open(f, encoding='utf-8')) for f in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', '.mcp.json')]"
+
+  oldest-python:
+    # The oldest Python the project script supports. setup-python has no 3.9 build for current Ubuntu runners, so
+    # this job uses the official image instead.
+    name: ubuntu-latest / Python 3.9 (container)
+    runs-on: ubuntu-latest
+    container: python:3.9-slim
+    steps:
+      - uses: actions/checkout@v4
+      - name: Project script tests (no network)
+        run: python -m unittest tests/test_offline.py -v
